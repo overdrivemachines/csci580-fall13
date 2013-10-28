@@ -10,7 +10,7 @@ def init
 			[0, 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0],
 			[0.5, 0, 0.33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0.5, 0, 0.5, 0, 0, 0.5, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0.33, 0, 0.55, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0.33, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0, 0],
 			[0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0],
 			[0, 0, 0.33, 0, 0, 0, 0, 0, 0, 0, 0.33, 0, 0],
@@ -64,11 +64,6 @@ def evidence_to_binary(e)
 	binary
 end
 
-# Calculate probabilities
-def calc(observation)
-	
-end
-
 # Discrepancy
 # number of bits that differ in value between ei and the corresponding value for <NSWE> for the square.
 def discrepancy(a, b)
@@ -80,6 +75,29 @@ def discrepancy(a, b)
 				1 + discrepancy(a, b[1..-1])].min
 	end
 end
+
+# Calculate probabilities
+def calc(observation)
+	# Discrepancies for every location compared to observation
+	d_all = Array.new(@NUMBER_OF_LOCATIONS, 0)
+	# Converting observation to binary
+	obs_binary = evidence_to_binary(observation)
+
+	@y = @r * @f
+
+	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
+		d_all[i] = discrepancy(obs_binary, @nswe[i])
+	end
+
+
+	
+
+	# @y.to_a.each {|r| puts r.inspect}
+	
+	o = Matrix.zero(@NUMBER_OF_LOCATIONS) 
+
+end
+
 
 
 
@@ -96,7 +114,7 @@ print ARGV.to_s
 print "\n\n"
 
 init
-
+calc("NS")
 
 
 # @r.to_a.each {|r| puts r.inspect}
