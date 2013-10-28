@@ -103,8 +103,13 @@ def calc(observation)
 	# Computing matrix z = o X y
 	z = o * y
 
+	z_sum = 0.0
+	z.to_a.each do |r|
+		z_sum = z_sum + r[0]
+	end
+
 	
-	# o.to_a.each {|r| puts r.inspect}
+	# z.to_a.each {|r| puts r.inspect}
 
 
 end
