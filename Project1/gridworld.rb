@@ -83,20 +83,26 @@ def calc(observation)
 	# Converting observation to binary
 	obs_binary = evidence_to_binary(observation)
 
-	@y = @r * @f
+	# Computing matrix y = @r X @f
+	y = @r * @f
 
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
 		d_all[i] = discrepancy(obs_binary, @nswe[i])
 	end
 
-
 	
+	# Computing matrix o
+	#o[i][i] = P(e1 | X1 = i) for d_all
 	o = Matrix.zero(@NUMBER_OF_LOCATIONS)
 	o_array = *o
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
 		o_array[i][i] = @probability_e_given_X[d_all[i]]
 	end
 	o = Matrix[*o_array]
+
+	# Computing matrix z = o X y
+	z = o * y
+
 	
 	# o.to_a.each {|r| puts r.inspect}
 
