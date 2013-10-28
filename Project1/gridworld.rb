@@ -35,8 +35,18 @@ end
 # 		result = 1010
 # result is in the format <NSWE>
 # 1 - obstacle; 0 - no obstacle
-def otob(observation)
+def evidence_to_binary(e)
+	b = Hash.new("0")
+	e.each_char do |i|
+		b[i] = "1"
+	end
 
+	binary = "0000"
+	binary[0] = b['N']
+	binary[1] = b['S']
+	binary[2] = b['W']
+	binary[3] = b['E']
+	binary
 end
 
 # Calculate probabilities
