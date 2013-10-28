@@ -27,6 +27,20 @@ require 'matrix'
 @f = Array.new(@NUMBER_OF_LOCATIONS, 1/@NUMBER_OF_LOCATIONS)
 
 
+print "+---+---+---+---+---+\n"
+print "| 1 | 2 | 3 | 4 | 5 |\n"
+print "+---+---+---+---+---+\n"
+print "| 6 |   | 7 |   | 8 |\n"
+print "+---+---+---+---+---+\n"
+print "| 9 | 10| 11| 12| 13|\n"
+print "+---+---+---+---+---+\n\n"
+
+print "Observations: " << ARGV.to_s
+
+def calc
+
+end
+
 
 # For each argument
 ARGV.each do|a|
