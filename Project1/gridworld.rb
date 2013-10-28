@@ -26,3 +26,9 @@ require 'matrix'
 # f[i] = P(X0 = i)
 @f = Array.new(@NUMBER_OF_LOCATIONS, 1/@NUMBER_OF_LOCATIONS)
 
+
+
+# For each argument
+ARGV.each do|a|
+
+end
