@@ -1,10 +1,10 @@
 require 'matrix'
 
-NUMBER_OF_LOCATIONS = 13
+@NUMBER_OF_LOCATIONS = 13
 
 # r = transpose(T) 
 # r[i][j] = P(X(t) = i | X(t-1) = j)	
-r = Matrix[
+@r = Matrix[
 		[0, 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0],
 		[0.5, 0, 0.33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0.5, 0, 0.5, 0, 0, 0.5, 0, 0, 0, 0, 0, 0],
@@ -21,7 +21,8 @@ r = Matrix[
 		]
 
 # P(e | X) for discrepancy d 0-4
-probability_e_given_X = [0.6561, 0.0729, 0.0081, 0.0009, 0.0001]
+@probability_e_given_X = [0.6561, 0.0729, 0.0081, 0.0009, 0.0001]
 
 # f[i] = P(X0 = i)
-f = Array.new(NUMBER_OF_LOCATIONS, 1/NUMBER_OF_LOCATIONS)
+@f = Array.new(@NUMBER_OF_LOCATIONS, 1/@NUMBER_OF_LOCATIONS)
+
