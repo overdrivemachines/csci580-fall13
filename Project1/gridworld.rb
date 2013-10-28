@@ -91,10 +91,15 @@ def calc(observation)
 
 
 	
-
-	# @y.to_a.each {|r| puts r.inspect}
+	o = Matrix.zero(@NUMBER_OF_LOCATIONS)
+	o_array = *o
+	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
+		o_array[i][i] = @probability_e_given_X[d_all[i]]
+	end
+	o = Matrix[*o_array]
 	
-	o = Matrix.zero(@NUMBER_OF_LOCATIONS) 
+	# o.to_a.each {|r| puts r.inspect}
+
 
 end
 
