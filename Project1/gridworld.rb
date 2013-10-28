@@ -103,14 +103,20 @@ def calc(observation)
 	# Computing matrix z = o X y
 	z = o * y
 
+	# Computing z_sum
 	z_sum = 0.0
 	z.to_a.each do |r|
 		z_sum = z_sum + r[0]
 	end
 
-	
-	# z.to_a.each {|r| puts r.inspect}
+	# Updating F[i] = P(X1 = i | e1) = z[i]/sum 
+	f_array = *@f
+	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
+		f_array[i][0] = z[i, 0] / z_sum
+	end
+	@f = Matrix[*f_array]
 
+	# @f.to_a.each {|r| puts r.inspect}
 
 end
 
