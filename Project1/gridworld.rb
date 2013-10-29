@@ -1,3 +1,11 @@
+#////////////////////////////////////////////////////#
+# Title: CSCI Project 1 - Global Localization Problem
+# Filename: gridworld.rb
+# Date Created: 10/27/2013 
+# Author: Dipen Chauhan
+# Copyright Dipen Chauhan
+#////////////////////////////////////////////////////#
+
 require 'matrix'
 
 # Initialize variables
@@ -150,9 +158,6 @@ def calc(observation)
 	end
 	# @f.to_a.each {|r| puts r.inspect}
 	# largest_p_index.each {|r| puts r.inspect}
-
-
-
 end
 
 
