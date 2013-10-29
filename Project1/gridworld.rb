@@ -157,12 +157,20 @@ print "    +---+---+---+---+---+\n"
 print "    | 9 | 10| 11| 12| 13|\n"
 print "    +---+---+---+---+---+\n\n"
 
-print "Observations: "
-print ARGV.to_s
-print "\n\n"
+if ARGV.size == 0
+	print "Please enter sensory inputs as arguments."
+else
+	print "Sequence of sensory inputs: "
+	print ARGV.to_s
+	print "\n\n"
 
-init
-calc("NS")
+	for i in 0..(ARGV.size - 1)
+		print "%d: %s\n\n" % [i + 1, ARGV[i]]
+		init
+		calc(ARGV[i])		
+	end
+end
+
 
 
 # @r.to_a.each {|r| puts r.inspect}
