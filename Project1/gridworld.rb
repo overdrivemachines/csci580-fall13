@@ -110,26 +110,52 @@ def calc(observation)
 	end
 
 	# Updating F[i] = P(X1 = i | e1) = z[i]/sum 
-	f_array = *@f
+	f_matrix_array = *@f
+	f_array = Array.new(@NUMBER_OF_LOCATIONS, 0.0)
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
-		f_array[i][0] = z[i, 0] / z_sum
+		f_matrix_array[i][0] = z[i, 0] / z_sum
+		f_array[i] = f_matrix_array[i][0]
 	end
-	@f = Matrix[*f_array]
+	@f = Matrix[*f_matrix_array]
 
+	f_max = f_array.max
+
+	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
+		if f_max == f_array[i]
+			puts "%6d%s%14.10f%2s" % [i, "*|", f_array[i], "|"]
+		else
+			puts "%6d%2s%14.10f%2s" % [i, "|", f_array[i], "|"]
+		end
+		
+		puts "%8s%s" % ["---+", "---------------+"]
+	end
+
+
+
+
+	#Print values
+
+	puts
+	puts
 	# @f.to_a.each {|r| puts r.inspect}
+	f_array.each {|r| puts r.inspect}
 
 end
 
 
+print "\n======================================\n"
+print "Project 1: Global Localization Problem\n"
+print "======================================\n"
+print "by Dipen Chauhan\n\n"
 
-
-print "+---+---+---+---+---+\n"
-print "| 1 | 2 | 3 | 4 | 5 |\n"
-print "+---+---+---+---+---+\n"
-print "| 6 |   | 7 |   | 8 |\n"
-print "+---+---+---+---+---+\n"
-print "| 9 | 10| 11| 12| 13|\n"
-print "+---+---+---+---+---+\n\n"
+print "Robot grid world:\n"
+print "    +---+---+---+---+---+\n"
+print "    | 1 | 2 | 3 | 4 | 5 |\n"
+print "    +---+---+---+---+---+\n"
+print "    | 6 |   | 7 |   | 8 |\n"
+print "    +---+---+---+---+---+\n"
+print "    | 9 | 10| 11| 12| 13|\n"
+print "    +---+---+---+---+---+\n\n"
 
 print "Observations: "
 print ARGV.to_s
