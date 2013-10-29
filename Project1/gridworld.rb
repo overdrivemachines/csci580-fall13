@@ -122,7 +122,7 @@ def calc(observation)
 	j = 0
 	f_max = f_array.max.round(10)	
 
-	puts "For this sequence, the probabilites of a robot being in each square grid:\n\n"
+	puts "For this sequence, the probabilities of a robot being in each square grid:\n\n"
 	puts "%8s%13s%3s" % ["LOC |", "PROBABILITY", "|"]
 	puts "%8s%s" % ["---+", "---------------+"]
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
@@ -138,7 +138,7 @@ def calc(observation)
 
 	puts
 	puts
-	puts "Largest probabilites and corresponding locations"
+	puts "Largest probabilities and corresponding locations"
 	puts
 
 	puts "%8s%13s%3s" % ["LOC |", "PROBABILITY", "|"]
