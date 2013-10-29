@@ -8,17 +8,17 @@ def init
 	# r[i][j] = P(X(t) = i | X(t-1) = j)	
 	@r = Matrix[
 			[0, 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0],
-			[0.5, 0, 0.33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0.5, 0, 1.0/3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0.5, 0, 0.5, 0, 0, 0.5, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0.33, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 1.0/3, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0, 0],
 			[0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0],
-			[0, 0, 0.33, 0, 0, 0, 0, 0, 0, 0, 0.33, 0, 0],
+			[0, 0, 1.0/3, 0, 0, 0, 0, 0, 0, 0, 1.0/3, 0, 0],
 			[0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5],
 			[0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0.33, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0, 1.0/3, 0, 0],
 			[0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0.5, 0, 0.5, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.33, 0, 0.5],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.0/3, 0, 0.5],
 			[0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0]]
 
 	# P(e | X) for discrepancy d 0-4
@@ -114,31 +114,29 @@ def calc(observation)
 	f_array = Array.new(@NUMBER_OF_LOCATIONS, 0.0)
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
 		f_matrix_array[i][0] = z[i, 0] / z_sum
-		f_array[i] = f_matrix_array[i][0]
+		f_array[i] = f_matrix_array[i][0].round(10)
 	end
 	@f = Matrix[*f_matrix_array]
 
-	f_max = f_array.max
+	f_max = f_array.max.round(10)
 
+	puts "For this sequence, the probabilites of a robot being in each square grid:\n\n"
+	puts "%8s%13s%3s" % ["LOC |", "PROBABILITY", "|"]
+	puts "%8s%s" % ["---+", "---------------+"]
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
 		if f_max == f_array[i]
 			puts "%6d%s%14.10f%2s" % [i, "*|", f_array[i], "|"]
 		else
 			puts "%6d%2s%14.10f%2s" % [i, "|", f_array[i], "|"]
-		end
-		
+		end		
 		puts "%8s%s" % ["---+", "---------------+"]
 	end
 
-
-
-
-	#Print values
-
 	puts
 	puts
+	puts "Largest probabilites and corresponding locations"
 	# @f.to_a.each {|r| puts r.inspect}
-	f_array.each {|r| puts r.inspect}
+	# f_array.each {|r| puts r.inspect}
 
 end
 
@@ -165,17 +163,14 @@ else
 	print "\n\n"
 
 	for i in 0..(ARGV.size - 1)
-		print "%d: %s\n\n" % [i + 1, ARGV[i]]
+		print "\n========\n"
+		print "%d: %s" % [i + 1, ARGV[i]]
+		print "\n========\n\n"
 		init
-		calc(ARGV[i])		
+		calc(ARGV[i])
 	end
 end
 
 
 
 # @r.to_a.each {|r| puts r.inspect}
-
-# For each argument
-ARGV.each do|a|
-
-end
