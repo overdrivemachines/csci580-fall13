@@ -135,25 +135,25 @@ def calc(observation)
 	puts "%8s%s" % ["---+", "---------------+"]
 	for i in 0..(@NUMBER_OF_LOCATIONS - 1)
 		if f_max == f_array[i]
-			puts "%6d%s%14.10f%2s" % [i, "*|", f_array[i], "|"]
+			puts "%6d%s%14.10f%2s" % [i + 1, "*|", f_array[i], "|"]
 			largest_p_index[j] = i
 			j = j + 1
 		else
-			puts "%6d%2s%14.10f%2s" % [i, "|", f_array[i], "|"]
+			puts "%6d%2s%14.10f%2s" % [i + 1, "|", f_array[i], "|"]
 		end		
 		puts "%8s%s" % ["---+", "---------------+"]
 	end
 
 	puts
 	puts
-	puts "Largest probabilities and corresponding locations"
+	puts "Largest probabilities and corresponding locations:"
 	puts
 
 	puts "%8s%13s%3s" % ["LOC |", "PROBABILITY", "|"]
 	puts "%8s%s" % ["---+", "---------------+"]
 	for i in 0..(largest_p_index.size - 1)
 		index = largest_p_index[i]
-		puts "%6d%2s%14.10f%2s" % [index, "|", f_array[index], "|"]
+		puts "%6d%2s%14.10f%2s" % [index + 1, "|", f_array[index], "|"]
 		puts "%8s%s" % ["---+", "---------------+"]
 	end
 	# @f.to_a.each {|r| puts r.inspect}
