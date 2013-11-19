@@ -51,7 +51,13 @@ def calc
 
 	# Step 2
 	@in[3] = @a[0] * @w[0][3] + @a[1] * @w[1][3] + @a[2] * @w[2][4]
+	print "in[3]: "
+	print @in[3]
+	print "\n"
 	@a[3] = 1 / (1 + Math.exp(-@in[3]))
+	print "a[3]: "
+	print @a[3]
+	print "\n"
 	@in[4] = @a[0]*@w[0][4] + @a[1]*@w[1][4] + @a[2]*@w[2][4]
 	@a[4] = 1 / (1 + Math.exp(-@in[4]))
 
@@ -97,16 +103,32 @@ print "by Dipen Chauhan\n\n"
 init
 
 if ARGV.size == 0
-	print "N = 999999\n"
-	for i in 0..999999
+	n = 1
+	print "N = %d\n" % [n]
+	init
+	for i in 1..n
 		calc
 	end
-	print "error5 = %f\n" % [@error[5]]
-	print "error6 = %f\n" % [@error[6]]
-	print @w
-	for i in 0..1000
-		calc
+	
+	print "Output a_j\n"
+	for i in 1..(@a.size - 1)
+		print i
+		print ": "
+		print @a[i]
+		print "\n"
 	end
+
+	print "Errors delta_j: \n"	
+	for i in 1..(@error.size - 1)
+		print i
+		print ": "
+		print @error[i]
+		print "\n"
+	end
+
+	# print "error5 = %f\n" % [@error[5]]
+	# print "error6 = %f\n" % [@error[6]]
+	# print @w
 else
 	print "using argv: %s" % [ARGV[0]]
 end
