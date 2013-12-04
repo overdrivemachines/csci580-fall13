@@ -114,6 +114,11 @@ def display_seq(seq_length = 20)
 	puts
 end
 
+# Writes the sequence to the file
+def write_seq(seq_length = 20, fn = "random-seq.txt")
+	
+end
+
 init
 
 if ARGV.size == 0
@@ -128,16 +133,19 @@ elsif ARGV.size == 1
 		read_file
 		gen_seq(ARGV[0].to_i)
 		display_seq(ARGV[0].to_i)
+		write_seq(ARGV[0].to_i)
 	else
 		read_file(ARGV[0])		
 		gen_seq
 		display_seq
+		write_seq
 	end
 	
 elsif ARGV.size == 2
 	read_file(ARGV[0])
 	gen_seq(ARGV[1].to_i)
 	display_seq(ARGV[1].to_i)
+	write_seq(ARGV[1].to_i)
 else
 	abort "ERROR: Too many arguments"
 end
