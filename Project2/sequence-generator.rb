@@ -55,31 +55,55 @@ def read_file(fn = "input.txt")
 	ifile.close
 end
 
-def gen_seq
+def gen_seq(seq_length = 20)
+	@states = Array.new(seq_length)
+	@observations = Array.new(seq_length)
 
+	# Initial State
+	if rand <= 0.50
+		@states[0] = "B"
+	else
+		@states[0] = "L"
+	end
+
+	for i in 0..(seq_length - 2)
+		if @states[i] == "B"
+			if rand <= @b_b
+				@states[i + 1] = "B"
+			else
+				@states[i + 1] = "L"
+			end
+		else
+			if rand <= @l_l
+				@states[i + 1] = "L"
+			else
+				@states[i + 1] = "B"
+			end
+		end
+	end	
 end
 
 init
 
 if ARGV.size == 0
-	@sequence_length = 20
 	read_file
+	gen_seq
 elsif ARGV.size == 1
 	# The argument can either be the number of interations
 	# or the file name
 	
 	# If 1st argument is a number
 	if ARGV[0].to_i.to_s == ARGV[0]
-		@sequence_length = ARGV[0].to_i
 		read_file
+		gen_seq(ARGV[0].to_i)
 	else
-		@sequence_length = 20
 		read_file(ARGV[0])		
+		gen_seq
 	end
 	
 elsif ARGV.size == 2
 	read_file(ARGV[0])
-	@sequence_length = ARGV[1]
+	gen_seq(ARGV[1])
 else
 	abort "ERROR: Too many arguments"
 end
