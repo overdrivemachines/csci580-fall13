@@ -27,12 +27,13 @@
 
 # Initialize all variables
 def init
-	@sequence_length = 0
+	@states = Array.new
+	@observations = Array.new
 	@b_b = @l_b = @b_l = @l_l = @h_b = @t_b = @h_l = @t_l = 0.5
 end
 
 # Reads the file
-def read_file(fn)
+def read_file(fn = "input.txt")
 	# If file does not exist
 	if !File.exists?(fn)
 		fn = "input.txt"
@@ -54,11 +55,15 @@ def read_file(fn)
 	ifile.close
 end
 
+def gen_seq
+
+end
+
 init
 
 if ARGV.size == 0
 	@sequence_length = 20
-	read_file("input.txt")
+	read_file
 elsif ARGV.size == 1
 	# The argument can either be the number of interations
 	# or the file name
@@ -66,7 +71,7 @@ elsif ARGV.size == 1
 	# If 1st argument is a number
 	if ARGV[0].to_i.to_s == ARGV[0]
 		@sequence_length = ARGV[0].to_i
-		read_file("input.txt")
+		read_file
 	else
 		@sequence_length = 20
 		read_file(ARGV[0])		
