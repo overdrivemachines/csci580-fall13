@@ -5,7 +5,7 @@
 # Author: Dipen Chauhan
 # Description:
 # Syntax for arguments
-# 	sequence-generator [sequence_lenght]
+# 	sequence-generator [sequence_length]
 # 	OR
 # 	sequence-generator [file_name] [sequence_length]
 #
@@ -31,22 +31,40 @@ def init
 	@b_b = @l_b = @b_l = @l_l = @h_b = @t_b = @h_l = @t_l = 0.5
 end
 
-# Reads 
-def read_file
-
+# Reads the file
+def read_file(fn)
+	ifile = File.new(fn, "r")
+	while (line = ifile.gets)
+		puts "#{line}"
+	end
+	ifile.close
 end
 
 init
 
 if ARGV.size == 0
 	@sequence_length = 20
+	read_file("input.txt")
 elsif ARGV.size == 1
-	@sequence_length = ARGV[0]
-else
-	@file_name = ARGV[0]
+	# The argument can either be the number of interations
+	# or the file name
+	
+	# If 1st argument is a number
+	if ARGV[0].to_i.to_s == ARGV[0]
+		@sequence_length = ARGV[0].to_i
+		read_file("input.txt")
+	else
+		@sequence_length = 20
+		read_file(ARGV[0])		
+	end
+	
+elsif ARGV.size == 2
+	read_file(ARGV[0])
 	@sequence_length = ARGV[1]
+else
+	abort "ERROR: Too many arguments"
 end
 
-print "Sequence of States\n"
+puts "Sequence of States\n"
 
-print "\n\nSequence of Observations\n"
+puts "\n\nSequence of Observations\n"
