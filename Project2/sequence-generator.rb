@@ -19,14 +19,16 @@
 # for the following (in the same order):
 # B|B, L|B, B|L, L|L, H|B, T|B, H|L, T|L
 # Input file can be specified as an argument.
-# Default file is input.txt
-# 
+# Default file is input.txt. If input.txt is missing, 
+# all values are set to 0.5
+#
 # Copyright Dipen Chauhan
 #////////////////////////////////////////////////////#
 
 # Initialize all variables
 def init
 	@sequence_length = 0
+	@b_b = @l_b = @b_l = @l_l = @h_b = @t_b = @h_l = @t_l = 0.5
 end
 
 # Reads 
