@@ -33,10 +33,24 @@ end
 
 # Reads the file
 def read_file(fn)
-	ifile = File.new(fn, "r")
-	while (line = ifile.gets)
-		puts "#{line}"
+	# If file does not exist
+	if !File.exists?(fn)
+		fn = "input.txt"
+		if !File.exists?(fn)
+			return
+		end
 	end
+
+	# Open the file. Read only.
+	ifile = File.new(fn, "r")
+	@b_b = ifile.gets.to_f
+	@l_b = ifile.gets.to_f
+	@b_l = ifile.gets.to_f
+	@l_l = ifile.gets.to_f
+	@h_b = ifile.gets.to_f
+	@t_b = ifile.gets.to_f
+	@h_l = ifile.gets.to_f
+	@t_l = ifile.gets.to_f
 	ifile.close
 end
 
