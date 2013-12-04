@@ -80,7 +80,25 @@ def gen_seq(seq_length = 20)
 				@states[i + 1] = "B"
 			end
 		end
-	end	
+	end
+
+	# Generating sequence of Observations based on the
+	# the sequence of States.
+	for i in 0..(seq_length - 1)
+		if @states[i] == "B"
+			if rand <= @h_b
+				@observations[i] = "H"
+			else
+				@observations[i] = "T"
+			end
+		else
+			if rand <= @h_l
+				@observations[i] = "H"
+			else
+				@observations[i] = "T"
+			end
+		end
+	end
 end
 
 init
