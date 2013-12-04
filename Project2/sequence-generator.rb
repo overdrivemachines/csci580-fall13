@@ -101,6 +101,19 @@ def gen_seq(seq_length = 20)
 	end
 end
 
+# Displays the two sequences on the screen
+def display_seq(seq_length = 20)
+	puts "Sequence of States\n"
+	for i in 0..(seq_length - 1)
+		print @states[i]
+	end	
+	puts "\n\nSequence of Observations\n"
+	for i in 0..(seq_length - 1)
+		print @observations[i]
+	end
+	puts
+end
+
 init
 
 if ARGV.size == 0
@@ -114,18 +127,17 @@ elsif ARGV.size == 1
 	if ARGV[0].to_i.to_s == ARGV[0]
 		read_file
 		gen_seq(ARGV[0].to_i)
+		display_seq(ARGV[0].to_i)
 	else
 		read_file(ARGV[0])		
 		gen_seq
+		display_seq
 	end
 	
 elsif ARGV.size == 2
 	read_file(ARGV[0])
-	gen_seq(ARGV[1])
+	gen_seq(ARGV[1].to_i)
+	display_seq(ARGV[1].to_i)
 else
 	abort "ERROR: Too many arguments"
 end
-
-puts "Sequence of States\n"
-
-puts "\n\nSequence of Observations\n"
