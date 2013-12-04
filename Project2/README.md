@@ -18,3 +18,21 @@ Given a structure of the **Hidden Markov Model** and a sequence of observations 
 
 ----
 
+Sequence Generator
+------------------
+
+> sequence-generator.rb
+
+This program generates:
+
+* Sequence of States
+* Sequence of Observations based on the states
+
+Length of the sequence can be specified as an argument. Default sequence length is 20.
+
+Program looks for an input file that contains values for the following (in the same order):
+B|B, L|B, B|L, L|L, H|B, T|B, H|L, T|L
+
+Input file can be specified as an argument. Default file is input.txt
+
+----
