@@ -152,4 +152,4 @@ end
 read_file(input_file)
 gen_seq(seq_length)
 display_seq(seq_length)
-write_seq(seq_length)
+write_seq(seq_length, seq_length)
