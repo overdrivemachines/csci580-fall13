@@ -121,31 +121,35 @@ end
 
 init
 
+input_file = "input.txt"
+output_file = "random-seq.txt"
+seq_length = 20
+
 if ARGV.size == 0
-	read_file
-	gen_seq
+	input_file = "input.txt"
+	output_file = "random-seq.txt"
+	seq_length = 20
 elsif ARGV.size == 1
 	# The argument can either be the number of interations
 	# or the file name
 	
 	# If 1st argument is a number
 	if ARGV[0].to_i.to_s == ARGV[0]
-		read_file
-		gen_seq(ARGV[0].to_i)
-		display_seq(ARGV[0].to_i)
-		write_seq(ARGV[0].to_i)
+		seq_length = ARGV[0].to_i
 	else
-		read_file(ARGV[0])		
-		gen_seq
-		display_seq
-		write_seq
+	# If 1st argument is a file name
+		input_file = ARGV[0]
 	end
 	
 elsif ARGV.size == 2
-	read_file(ARGV[0])
-	gen_seq(ARGV[1].to_i)
-	display_seq(ARGV[1].to_i)
-	write_seq(ARGV[1].to_i)
+	# 2 arguments in the format: [file_name] [sequence_length]
+	input_file = ARGV[0]
+	seq_length = ARGV[1].to_i
 else
 	abort "ERROR: Too many arguments"
 end
+
+read_file(input_file)
+gen_seq(seq_length)
+display_seq(seq_length)
+write_seq(seq_length)
