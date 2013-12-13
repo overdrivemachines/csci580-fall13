@@ -133,6 +133,8 @@ def write_seq(seq_length = 20, fn = "seq.txt")
 		ofile.write(@observations[i])
 	end
 
+	ofile.close
+
 end
 
 init
