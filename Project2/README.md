@@ -39,6 +39,6 @@ Length of the sequence can be specified as an argument. Default sequence length 
 
 Program looks for an input file that contains values for the following (in the same order):
 B|B, L|B, B|L, L|L, H|B, T|B, H|L, T|L
-Input file can be specified as an argument. Default file is input.txt
+Input file can be specified as an argument. Default file is hmm.txt
 
 ----
