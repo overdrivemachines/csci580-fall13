@@ -37,7 +37,7 @@ def read_file(seq_fn = "seq.txt", prob_fn = "hmm.txt")
 		end
 	end
 
-	print "Reading file "
+	print "\n\nReading file "
 	print seq_fn
 	print "\n"
 
@@ -45,6 +45,8 @@ def read_file(seq_fn = "seq.txt", prob_fn = "hmm.txt")
 	while (line = ifile.gets)
 		if (line.to_i.to_s == line)
 			# Converting the line into an array.
+			print "Observations: "
+			print line
 			@observations = line.chars.map(&:to_i)
 			break
 		end
@@ -59,8 +61,32 @@ def read_file(seq_fn = "seq.txt", prob_fn = "hmm.txt")
 			return			
 		end
 	end
+
+	print "\n\nReading file "
+	print prob_fn
+	print "\n"
+
+	# Open the file. Read only.
+	ifile = File.new(prob_fn, "r")
+	@b_b = ifile.gets.to_f
+	@l_b = ifile.gets.to_f
+	@b_l = ifile.gets.to_f
+	@l_l = ifile.gets.to_f
+	@h_b = ifile.gets.to_f
+	@t_b = ifile.gets.to_f
+	@h_l = ifile.gets.to_f
+	@t_l = ifile.gets.to_f
+	ifile.close
 end
 
 init
-print "Expectation-Maximization Algorithm\n\n"
-read_file
+print "Expectation-Maximization Algorithm"
+
+if (ARGV.size == 0)
+	read_file
+elsif (ARGV.size == 3)
+	observations_file = ARGV[0]
+	initial_p_file = ARGV[1]
+	iterations = ARGV[2]
+	read_file(observations_file, initial_p_file)
+end
