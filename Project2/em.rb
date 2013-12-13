@@ -21,6 +21,9 @@ def init
 
 	# Probabilities
 	@b_b = @l_b = @b_l = @l_l = @h_b = @t_b = @h_l = @t_l = 0.5
+
+	@f_B = Array.new
+	@f_L = Array.new
 end
 
 # Reads from files
@@ -79,6 +82,26 @@ def read_file(seq_fn = "seq.txt", prob_fn = "hmm.txt")
 	ifile.close
 end
 
+def calc
+	seq_length = @observations.size
+	@f_B[0] = 0.5
+	@f_L[0] = 0.5
+
+	# Forward Algorithm
+	for i in 1..seq_length
+		puts i		
+		if @observations[i - 1] == 1 # Observation is Heads
+			@f_B[i] = @h_b * ((@f_B[i - 1] * @b_b) + (@f_L[i - 1] * @l_b))
+			@f_L[i] = @h_l * ((@f_B[i - 1] * @b_l) + (@f_L[i - 1] * @l_l))
+		else # Observation is Tails
+			@f_B[i] = @t_b * ((@f_B[i - 1] * @b_b) + (@f_L[i - 1] * @l_b))
+			@f_L[i] = @t_l * ((@f_B[i - 1] * @b_l) + (@f_L[i - 1] * @l_l))
+		end
+	end
+
+	# Backward Algorithm
+end
+
 init
 print "Expectation-Maximization Algorithm"
 
@@ -90,3 +113,9 @@ elsif (ARGV.size == 3)
 	iterations = ARGV[2]
 	read_file(observations_file, initial_p_file)
 end
+
+calc
+
+# puts @observations.size
+puts @f_B[9]
+puts @f_L[9]
