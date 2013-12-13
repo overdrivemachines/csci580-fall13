@@ -18,7 +18,7 @@ Given a structure of the **Hidden Markov Model** and a sequence of observations 
 
 ----
 
-Sequence Gefnerator
+Sequence Generator
 ------------------
 
 > sequence-generator.rb
@@ -42,3 +42,13 @@ Input file can be specified as an argument. Default file is hmm.txt
 The output file seq.txt. It contains the randomly generated sequence of states on the first line and the sequence of observations in the second line.
 
 ----
+
+Expectation-Maximization Algorithm
+----------------------------------
+
+> em.rb
+
+Syntax for arguments
+```
+em [input_file_name]
+```
