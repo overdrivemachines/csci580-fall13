@@ -24,6 +24,8 @@ def init
 
 	@f_B = Array.new
 	@f_L = Array.new
+	@b_B = Array.new
+	@b_L = Array.new
 end
 
 # Reads from files
@@ -88,8 +90,7 @@ def calc
 	@f_L[0] = 0.5
 
 	# Forward Algorithm
-	for i in 1..seq_length
-		puts i		
+	for i in 1..seq_length	
 		if @observations[i - 1] == 1 # Observation is Heads
 			@f_B[i] = @h_b * ((@f_B[i - 1] * @b_b) + (@f_L[i - 1] * @l_b))
 			@f_L[i] = @h_l * ((@f_B[i - 1] * @b_l) + (@f_L[i - 1] * @l_l))
@@ -100,6 +101,19 @@ def calc
 	end
 
 	# Backward Algorithm
+	@b_B[seq_length] = 0.5
+	@b_L[seq_length] = 0.5
+	
+	for j in 1..seq_length
+		i = seq_length - j
+		if @observations[i] == 1 # Observation is Heads
+			@b_B[i] = (@b_B[i + 1] * @b_b * @h_b) + (@b_L[i + 1] * @l_b * @h_l)
+			@b_L[i] = @b_B[i]
+		else
+			@b_B[i] = (@b_B[i + 1] * @b_b * @t_b) + (@b_L[i + 1] * @l_b * @t_l)
+			@b_L[i] = @b_B[i]
+		end
+	end
 end
 
 init
@@ -117,5 +131,5 @@ end
 calc
 
 # puts @observations.size
-puts @f_B[9]
-puts @f_L[9]
+puts @b_B.inspect
+puts @b_L[0]
