@@ -19,7 +19,7 @@
 # for the following (in the same order):
 # B|B, L|B, B|L, L|L, H|B, T|B, H|L, T|L
 # Input file can be specified as an argument.
-# Default file is input.txt. If input.txt is missing, 
+# Default file is hmm.txt. If hmm.txt is missing, 
 # all values are set to 0.5
 #
 # Copyright Dipen Chauhan
@@ -33,10 +33,10 @@ def init
 end
 
 # Reads the file
-def read_file(fn = "input.txt")
+def read_file(fn = "hmm.txt")
 	# If file does not exist
 	if !File.exists?(fn)
-		fn = "input.txt"
+		fn = "hmm.txt"
 		if !File.exists?(fn)
 			return
 		end
@@ -121,12 +121,12 @@ end
 
 init
 
-input_file = "input.txt"
+input_file = "hmm.txt"
 output_file = "random-seq.txt"
 seq_length = 20
 
 if ARGV.size == 0
-	input_file = "input.txt"
+	input_file = "hmm.txt"
 	output_file = "random-seq.txt"
 	seq_length = 20
 elsif ARGV.size == 1
