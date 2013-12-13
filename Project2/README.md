@@ -18,7 +18,7 @@ Given a structure of the **Hidden Markov Model** and a sequence of observations 
 
 ----
 
-Sequence Generator
+Sequence Gefnerator
 ------------------
 
 > sequence-generator.rb
