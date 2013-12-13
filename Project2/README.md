@@ -30,8 +30,8 @@ sequence-generator [input_file_name] [sequence_length]
 
 This program generates:
 
-* Sequence of States
-* Sequence of Observations based on the states
+* Sequence of States (B for Balanced or L for Loaded)
+* Sequence of Observations based on the states (0 for Tails or 1 for Heads)
 
 Length of the sequence can be specified as an argument. Default sequence length is 20.
 
