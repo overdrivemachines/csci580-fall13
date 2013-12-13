@@ -87,15 +87,19 @@ def gen_seq(seq_length = 20)
 	for i in 0..(seq_length - 1)
 		if @states[i] == "B"
 			if rand <= @h_b
-				@observations[i] = "H"
+				# @observations[i] = "H"
+				@observations[i] = 1
 			else
-				@observations[i] = "T"
+				# @observations[i] = "T"
+				@observations[i] = 0
 			end
 		else
 			if rand <= @h_l
-				@observations[i] = "H"
+				# @observations[i] = "H"
+				@observations[i] = 1
 			else
-				@observations[i] = "T"
+				# @observations[i] = "T"
+				@observations[i] = 0
 			end
 		end
 	end
@@ -115,8 +119,20 @@ def display_seq(seq_length = 20)
 end
 
 # Writes the sequence to the file
-def write_seq(seq_length = 20, fn = "random-seq.txt")
-	
+def write_seq(seq_length = 20, fn = "seq.txt")
+	if File.exists?(fn)
+		File.delete(fn)
+	end
+
+	ofile = File.new(fn, "w")
+	for i in 0..(seq_length - 1)
+		ofile.write(@states[i])
+	end
+	ofile.write("\n")
+	for i in 0..(seq_length - 1)
+		ofile.write(@observations[i])
+	end
+
 end
 
 init
@@ -152,4 +168,4 @@ end
 read_file(input_file)
 gen_seq(seq_length)
 display_seq(seq_length)
-write_seq(seq_length, seq_length)
+write_seq(seq_length)

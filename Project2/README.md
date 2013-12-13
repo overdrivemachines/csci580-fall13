@@ -25,9 +25,7 @@ Sequence Generator
 
 Syntax for arguments
 ```
-sequence-generator [sequence_length]
-OR
-sequence-generator [file_name] [sequence_length]
+sequence-generator [input_file_name] [sequence_length]
 ```
 
 This program generates:
@@ -40,5 +38,7 @@ Length of the sequence can be specified as an argument. Default sequence length 
 Program looks for an input file that contains values for the following (in the same order):
 B|B, L|B, B|L, L|L, H|B, T|B, H|L, T|L
 Input file can be specified as an argument. Default file is hmm.txt
+
+The output file seq.txt. It contains the randomly generated sequence of states on the first line and the sequence of observations in the second line.
 
 ----
