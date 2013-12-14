@@ -143,7 +143,14 @@ def calc
 			@nn_L_L[i] = @f_L[i] * @l_l * @t_l * @b_L[i + 1]
 		end		
 	end
-	puts @nn_B_L.inspect
+	
+	# Normalized Probabilities
+	for i in 0..(seq_length - 1)
+		@n_B_B[i] = @nn_B_B[i] / p_e_1_n
+		@n_B_L[i] = @nn_B_L[i] / p_e_1_n
+		@n_L_B[i] = @nn_L_B[i] / p_e_1_n
+		@n_L_L[i] = @nn_L_L[i] / p_e_1_n
+	end	
 end
 
 init
