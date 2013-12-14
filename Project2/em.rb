@@ -156,8 +156,10 @@ end
 init
 print "Expectation-Maximization Algorithm"
 
+
 if (ARGV.size == 0)
 	read_file
+	iterations = 1
 elsif (ARGV.size == 3)
 	observations_file = ARGV[0]
 	initial_p_file = ARGV[1]
@@ -165,7 +167,9 @@ elsif (ARGV.size == 3)
 	read_file(observations_file, initial_p_file)
 end
 
-calc
+for i in 1..iterations
+	calc
+end
 
 # puts @observations.size
 # puts @b_B.inspect
