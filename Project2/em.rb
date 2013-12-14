@@ -26,6 +26,18 @@ def init
 	@f_L = Array.new
 	@b_B = Array.new
 	@b_L = Array.new
+
+	# Not Normalized Probabilities
+	@nn_B_B = Array.new
+	@nn_B_L = Array.new
+	@nn_L_B = Array.new
+	@nn_L_L = Array.new
+
+	# Normalized Probabilities
+	@n_B_B = Array.new
+	@n_B_L = Array.new
+	@n_L_B = Array.new
+	@n_L_L = Array.new
 end
 
 # Reads from files
@@ -114,6 +126,24 @@ def calc
 			@b_L[i] = @b_B[i]
 		end
 	end
+
+	p_e_1_n = @b_B[0]
+
+	# Not Normalized Probabilities
+	for i in 0..(seq_length - 1)
+		if @observations[i] == 1 # Observation is Heads
+			@nn_B_B[i] = @f_B[i] * @b_b * @h_b * @b_B[i + 1]
+			@nn_B_L[i] = @f_L[i] * @b_l * @h_b * @b_B[i + 1]
+			@nn_L_B[i] = @f_B[i] * @l_b * @h_l * @b_L[i + 1]
+			@nn_L_L[i] = @f_L[i] * @l_l * @h_l * @b_L[i + 1]
+		else
+			@nn_B_B[i] = @f_B[i] * @b_b * @t_b * @b_B[i + 1]
+			@nn_B_L[i] = @f_L[i] * @b_l * @t_b * @b_B[i + 1]
+			@nn_L_B[i] = @f_B[i] * @l_b * @t_l * @b_L[i + 1]
+			@nn_L_L[i] = @f_L[i] * @l_l * @t_l * @b_L[i + 1]
+		end		
+	end
+	puts @nn_B_L.inspect
 end
 
 init
@@ -131,5 +161,5 @@ end
 calc
 
 # puts @observations.size
-puts @b_B.inspect
-puts @b_L[0]
+# puts @b_B.inspect
+# puts @b_L[0]
